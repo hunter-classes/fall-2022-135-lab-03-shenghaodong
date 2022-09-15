@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <climits>
 
-std::string compare_basins(std::string date){
+std::string get_east_storage(std::string date){
   std::ifstream fin("Current_Reservoir_Levels.tsv");
   if (fin.fail()) {
     std::cerr << "File cannot be opened for reading." << std::endl;
@@ -23,7 +23,7 @@ std::string compare_basins(std::string date){
     fin.ignore(INT_MAX, '\n');
     // prints East basin storage:
     if(findDate == date){
-      std::string dte = std::to_string(eastEl);
+      std::string dte = std::to_string(eastSt);
       return dte;
     }
   }
@@ -47,7 +47,7 @@ double get_min_east(){
   double eastMin = eastEl;
   while(fin >> date >> eastSt >> eastEl >> westSt >> westEl){
     fin.ignore(INT_MAX, '\n');
-    double eastTemp = eastEl;
+    double eastTemp = eastSt;
     if(eastTemp < eastMin){
       eastMin = eastTemp;
     }
@@ -72,7 +72,7 @@ double get_max_east(){
   double eastMax = eastEl;
   while(fin >> date >> eastSt >> eastEl >> westSt >> westEl){
     fin.ignore(INT_MAX, '\n');
-    double eastTemp = eastEl;
+    double eastTemp = eastSt;
     if(eastTemp > eastMax){
       eastMax = eastTemp;
     }
@@ -90,12 +90,13 @@ std::string compare_basins(std::string date){
   }
   std::string junk;
   getline(fin, junk);
-  std::string date;
+  std::string findDate;
   double eastSt;
   double eastEl;
   double westSt;
   double westEl;
-  while(fin >> date >> eastSt >> eastEl >> westSt >> westEl){
+  while(fin >> findDate >> eastSt >> eastEl >> westSt >> westEl){
     fin.ignore(INT_MAX, '\n');
+
   }
 }
