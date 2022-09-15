@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <climits>
 #include "reservoir.h"
+#include "reverseorder.h"
 
 int main()
 {
