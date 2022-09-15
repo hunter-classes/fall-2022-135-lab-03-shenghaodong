@@ -79,3 +79,23 @@ double get_max_east(){
   }
   return eastMax;
 }
+
+std::string compare_basins(std::string date){
+  //return East if the East basin was higher on the specified date and West if the West was higher. 
+  //It should return Equal if the values were the same.
+  std::ifstream fin("Current_Reservoir_Levels.tsv");
+  if(fin.fail()){
+    std::cerr << "FIle cannot be opened for reading." << std::endl;
+    exit(1);
+  }
+  std::string junk;
+  getline(fin, junk);
+  std::string date;
+  double eastSt;
+  double eastEl;
+  double westSt;
+  double westEl;
+  while(fin >> date >> eastSt >> eastEl >> westSt >> westEl){
+    fin.ignore(INT_MAX, '\n');
+  }
+}
