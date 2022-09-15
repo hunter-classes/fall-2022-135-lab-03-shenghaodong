@@ -98,5 +98,15 @@ std::string compare_basins(std::string date){
   double westEl;
   while(fin >> findDate >> eastSt >> eastEl >> westSt >> westEl){
     fin.ignore(INT_MAX, '\n');
+    if(findDate == date){
+      if(eastEl > westEl){
+        return findDate + " East";
+      }else if(westEl > eastEl){
+        return findDate + " West";
+      }else{
+        return findDate + " Equal";
+      }
+    }
   }
+  return "null";
 }
