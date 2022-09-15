@@ -29,3 +29,13 @@ std::string compare_basins(std::string date){
   }
   return "null";
 }
+
+
+double get_min_east(){
+
+}
+
+
+double get_max_east(){
+  
+}
