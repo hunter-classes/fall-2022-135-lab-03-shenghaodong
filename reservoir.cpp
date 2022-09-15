@@ -5,7 +5,7 @@
 #include <climits>
 #include <iomanip>
 
-std::string get_east_storage(std::string date){
+double get_east_storage(std::string date){
   std::ifstream fin("Current_Reservoir_Levels.tsv");
   if (fin.fail()) {
     std::cerr << "File cannot be opened for reading." << std::endl;
@@ -24,19 +24,17 @@ std::string get_east_storage(std::string date){
     fin.ignore(INT_MAX, '\n');
     // prints East basin storage:
     if(findDate == date){
-      std::stringstream stream;
-      stream << std::fixed << std::setprecision(2) << eastSt;
-      return stream.str();
+      return eastSt;
     }
   }
-  return "null";
+  return 0;
 }
 
 
 double get_min_east(){
   std::ifstream fin("Current_Reservoir_Levels.tsv");
   if(fin.fail()){
-    std::cerr << "FIle cannot be opened for reading." << std::endl;
+    std::cerr << "File cannot be opened for reading." << std::endl;
     exit(1);
   }
   std::string junk;
@@ -46,7 +44,7 @@ double get_min_east(){
   double eastEl;
   double westSt;
   double westEl;
-  double eastMin = eastEl;
+  double eastMin = 99999999;
   while(fin >> date >> eastSt >> eastEl >> westSt >> westEl){
     fin.ignore(INT_MAX, '\n');
     double eastTemp = eastSt;
@@ -58,10 +56,11 @@ double get_min_east(){
 }
 
 
+
 double get_max_east(){
   std::ifstream fin("Current_Reservoir_Levels.tsv");
   if(fin.fail()){
-    std::cerr << "FIle cannot be opened for reading." << std::endl;
+    std::cerr << "File cannot be opened for reading." << std::endl;
     exit(1);
   }
   std::string junk;
@@ -71,7 +70,7 @@ double get_max_east(){
   double eastEl;
   double westSt;
   double westEl;
-  double eastMax = eastEl;
+  double eastMax = 0;
   while(fin >> date >> eastSt >> eastEl >> westSt >> westEl){
     fin.ignore(INT_MAX, '\n');
     double eastTemp = eastSt;
@@ -87,7 +86,7 @@ std::string compare_basins(std::string date){
   //It should return Equal if the values were the same.
   std::ifstream fin("Current_Reservoir_Levels.tsv");
   if(fin.fail()){
-    std::cerr << "FIle cannot be opened for reading." << std::endl;
+    std::cerr << "File cannot be opened for reading." << std::endl;
     exit(1);
   }
   std::string junk;
@@ -99,6 +98,5 @@ std::string compare_basins(std::string date){
   double westEl;
   while(fin >> findDate >> eastSt >> eastEl >> westSt >> westEl){
     fin.ignore(INT_MAX, '\n');
-
   }
 }
