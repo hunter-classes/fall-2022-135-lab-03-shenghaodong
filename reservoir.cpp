@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <climits>
+#include <iomanip>
 
 std::string get_east_storage(std::string date){
   std::ifstream fin("Current_Reservoir_Levels.tsv");
@@ -23,8 +24,9 @@ std::string get_east_storage(std::string date){
     fin.ignore(INT_MAX, '\n');
     // prints East basin storage:
     if(findDate == date){
-      std::string dte = std::to_string(eastSt);
-      return dte;
+      std::stringstream stream;
+      stream << std::fixed << std::setprecision(2) << eastSt;
+      return stream.str();
     }
   }
   return "null";
