@@ -4,9 +4,9 @@
 
 * First name:
 
-* GitHub username:
+* GitHub username: shenghaodong
 
-* Notes:
+* Notes: Labelled and tested each task multiple times.
 
 
 
